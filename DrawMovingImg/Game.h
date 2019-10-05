@@ -15,7 +15,7 @@ class CGame
 	LPD3DXSPRITE spriteHandler = NULL;			// Sprite helper library to help us draw 2D image on the screen 
 
 public:
-	void Init(HWND hWnd);
+	void Init(HWND hWnd);		//Alias
 	void Draw(float x, float y, LPDIRECT3DTEXTURE9 texture);
 
 	LPDIRECT3DDEVICE9 GetDirect3DDevice() { return this->d3ddv; }

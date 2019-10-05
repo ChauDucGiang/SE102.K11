@@ -7,15 +7,15 @@
 #include "Textures.h"
 
 #define WINDOW_CLASS_NAME L"SampleWindow"
-#define MAIN_WINDOW_TITLE L"DrawMovingImg"
+#define MAIN_WINDOW_TITLE L"DrawMovingImg"				//Set title form
 
-#define BRICK_TEXTURE_PATH L"brick.png"
+#define BRICK_TEXTURE_PATH L"brick.png"					//Path to image
 
-#define BACKGROUND_COLOR D3DCOLOR_XRGB(255, 0, 0)
-#define SCREEN_WIDTH 320
-#define SCREEN_HEIGHT 240
+#define BACKGROUND_COLOR D3DCOLOR_XRGB(0, 170, 255)		//Set back ground color
+#define SCREEN_WIDTH 640								//Set width
+#define SCREEN_HEIGHT 480								//Set height
 
-#define MAX_FRAME_RATE 120
+#define MAX_FRAME_RATE 240								//FPS Max
 
 CGame *game;
 CTextures * textures;
@@ -46,6 +46,7 @@ Load all game resources. In this example, only load brick image
 void LoadResources()
 {
 	textures = CTextures::GetInstance();
+	//Get image from folder
 
 	textures->Add(1, L"brick.png", D3DCOLOR_XRGB(255, 255, 255));
 
@@ -76,11 +77,14 @@ dt: time period between beginning of last frame and beginning of this frame
 */
 void Update(DWORD dt)
 {
-	if (x >= 220)
+	// Code logic
+
+	// Set limit moving width
+	if (x >= 590)
 	{
 		vx = 0;
 		vy = 0.1f;
-		x = 220;
+		x = 590;
 		y += vy*dt;
 	}
 
@@ -92,6 +96,8 @@ void Update(DWORD dt)
 		y += vy*dt;
 	}
 
+
+	// Set limit moving height
 	if (y <= 50)
 	{	
 		vy = 0;
@@ -100,11 +106,11 @@ void Update(DWORD dt)
 		x += vx*dt;		
 	}
 
-	if (y >= 120)
+	if (y >= 360)
 	{
 		vy = 0;
 		vx = -0.1f;
-		y = 120;
+		y = 360;
 		x += vx*dt;		
 	}
 }
@@ -202,7 +208,7 @@ int Run()
 	MSG msg;
 	int done = 0;
 	DWORD frameStart = GetTickCount();
-	DWORD tickPerFrame = 1000 / MAX_FRAME_RATE;
+	DWORD tickPerFrame = 10000 / MAX_FRAME_RATE;
 
 	while (!done)
 	{
